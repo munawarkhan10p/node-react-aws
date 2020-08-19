@@ -1,0 +1,29 @@
+version: 2
+
+jobs:
+  lint:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Node.js packages
+          command: yarn install
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run ESLint
+          command: yarn lint
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - lint
