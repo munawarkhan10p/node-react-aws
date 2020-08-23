@@ -10,7 +10,6 @@ export async function authorize(req: express.Request, res: express.Response, nex
     if (authheader.length === 2 && authheader[0].toLowerCase() === 'bearer') {
         token = authheader[1];
     }
-
     if (!token) {
         return next(Boom.unauthorized('Token required'));
     }

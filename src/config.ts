@@ -76,6 +76,13 @@ const conf = convict({
             env: 'AWS_DEFAULT_REGION',
         },
     },
+    sqs: {
+        resetPassword: {
+            format: '*',
+            default: '',
+            env: 'SQS_RP_URL',
+        },
+    },
 });
 
 conf.validate({ allowed: 'strict' });

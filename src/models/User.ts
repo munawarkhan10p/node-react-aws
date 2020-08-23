@@ -5,29 +5,29 @@ import { Role } from './enums';
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    id!: string;
+    id: string;
 
     @Column({ unique: true })
-    email!: string;
+    email: string;
 
     @Column({ nullable: true })
-    firstName?: string;
+    firstName: string;
 
     @Column({ nullable: true })
-    lastName?: string;
+    lastName: string;
 
     @Column('enum', { enum: Role })
-    role!: Role;
+    role: Role;
 
     @Column({ nullable: true })
-    hashedPassword?: string;
+    hashedPassword: string;
 
     @Column({ default: false })
-    invitationAccepted!: boolean;
+    invitationAccepted: boolean;
 
     @CreateDateColumn()
-    createdAt!: Date;
+    createdAt: Date;
 
     @UpdateDateColumn()
-    updatedAt!: Date;
+    updatedAt: Date;
 }
