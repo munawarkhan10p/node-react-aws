@@ -17,6 +17,15 @@ async function start(): Promise<void> {
 
     await createConnection();
 
+    const consumers = await fg('./queues/*.(ts|js)', { cwd: __dirname });
+    for (const consumerPath of consumers) {
+        const { default: consumer } = await import(consumerPath);
+        if (consumer && typeof (consumer.consume) === 'function') {
+            logger.info(`Starting ${consumer.name} consumer at ${consumer.queueURL}...`);
+            consumer.consume();
+        }
+    }
+
     const app = express();
 
     // Register middlewares
@@ -39,7 +48,7 @@ async function start(): Promise<void> {
     const routes = await fg('./routes/*.(ts|js)', { cwd: __dirname });
     for (const routePath of routes) {
         const { default: router } = await import(routePath);
-        if (typeof(router) === 'function') app.use(config.server.basePath, router);
+        if (typeof (router) === 'function') app.use(config.server.basePath, router);
     }
 
     // Error handler must come last...

@@ -10,6 +10,10 @@ services:
             DB_NAME: postgres
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
+            SQS_RP_URL: https://sqs.us-east-1.amazonaws.com/962368660083/email
+            AWS_DEFAULT_REGION: us-east-1
+            AWS_ACCESS_KEY_ID: 'your AWS_ACCESS_KEY_ID'
+            AWS_SECRET_ACCESS_KEY: 'you AWS_SECRET_ACCESS_KEY'
 
         ports:
             - 3000:3000

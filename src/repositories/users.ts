@@ -9,7 +9,14 @@ class UserRepo {
         this.repo = getConnection().getRepository(User);
     }
 
-    async findById(userId: string): Promise<User | undefined> {
+    async getAll(offset: number, limit: number): Promise<[User[], number]> {
+        return this.repo.createQueryBuilder('user')
+            .take(limit)
+            .skip(offset)
+            .getManyAndCount();
+    }
+
+    async findById(userId: string): Promise<User> {
         const user = await this.repo.findOne({
             where: [
                 { id: userId },
@@ -19,7 +26,7 @@ class UserRepo {
         return user;
     }
 
-    async findByEmail(email: string): Promise<User | undefined> {
+    async findByEmail(email: string): Promise<User> {
         const user = await this.repo.findOne({
             where: [
                 { email },
@@ -27,6 +34,23 @@ class UserRepo {
         });
 
         return user;
+    }
+
+    async create(email: string): Promise<User> {
+        const user = this.repo.create({ email });
+
+        return this.repo.save(user);
+    }
+
+    async update(userId: string, user: Partial<Pick<User, 'firstName' | 'lastName' | 'hashedPassword'>>): Promise<User> {
+        return this.repo.save({
+            id: userId,
+            ...user,
+        });
+    }
+
+    async remove(userId: string): Promise<void> {
+        await this.repo.delete(userId);
     }
 }
 

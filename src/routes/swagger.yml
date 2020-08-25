@@ -108,6 +108,13 @@ components:
       schema:
         type: string
         format: uuid
+    resetPasswordToken:
+      in: query
+      name: token
+      description: Reset Password Token
+      required: true
+      schema:
+        type: string    
   schemas:
     Message:
       properties:
@@ -124,7 +131,6 @@ components:
         - firstName
         - lastName
         - role
-        - invitationAccepted
       properties:
         id:
           description: User ID

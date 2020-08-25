@@ -11,7 +11,6 @@ export class Seed1580070688033 implements MigrationInterface {
             firstName: 'Munawar',
             lastName: 'Khan',
             hashedPassword: bcrypt.hashSync('helloworld', 8),
-            invitationAccepted: true,
             role: Role.ADMIN,
         });
 
