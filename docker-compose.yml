@@ -13,7 +13,7 @@ services:
             SQS_RP_URL: https://sqs.us-east-1.amazonaws.com/962368660083/email
             AWS_DEFAULT_REGION: us-east-1
             AWS_ACCESS_KEY_ID: 'your AWS_ACCESS_KEY_ID'
-            AWS_SECRET_ACCESS_KEY: 'you AWS_SECRET_ACCESS_KEY'
+            AWS_SECRET_ACCESS_KEY: 'your AWS_SECRET_ACCESS_KEY'
 
         ports:
             - 3000:3000

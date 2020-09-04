@@ -1,10 +1,13 @@
 import Joi from '@hapi/joi';
 import express, { Router } from 'express';
 
+import config from '../config';
 import { authorize } from '../middlewares/authorize';
 import ResetPasswordQueue from '../queues/ResetPasswordQueue';
 import { getAllUsers, createUser } from '../services/users';
 import { wrapAsync } from '../utils/asyncHandler';
+import { EmailTemplate } from '../utils/emailTemplater';
+import mailer from '../utils/mailer';
 
 const router = Router();
 
@@ -183,6 +186,17 @@ router.post('/users/reset-password', wrapAsync(authorize), wrapAsync(async (req:
         id: req.user.id,
         hashPassword: password,
         email: req.user.email,
+
+    });
+
+    const user = req.user;
+
+    mailer.sendMail(config.transactionalEmailSource, {
+        address: 'munawar.khan@hobsons.com',
+        templateData: {
+            user,
+        },
+    }, EmailTemplate.RESET_PASSWORD, {
 
     });
 

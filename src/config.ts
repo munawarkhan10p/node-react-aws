@@ -6,6 +6,23 @@ const conf = convict({
         default: 'development',
         env: 'NODE_ENV',
     },
+    app: {
+        name: {
+            format: '*',
+            default: 'Node',
+            env: 'APP_NAME',
+        },
+        url: {
+            format: '*',
+            default: 'http://localhost:4200',
+            env: 'APP_URL',
+        },
+        supportEmail: {
+            format: '*',
+            default: 'support@node.com',
+            env: 'APP_SUPPORT_EMAIL',
+        },
+    },
     server: {
         port: {
             format: 'port',
@@ -17,6 +34,11 @@ const conf = convict({
             default: '/',
             env: 'BASE_PATH',
         },
+    },
+    transactionalEmailSource: {
+        format: '*',
+        default: 'munawarkhan6656@gmail.com',
+        env: 'EMAIL_SOURCE',
     },
     token: {
         auth: {
