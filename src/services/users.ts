@@ -1,8 +1,8 @@
 import Boom from '@hapi/boom';
 import bcrypt from 'bcrypt';
-
 import { User } from '../models/User';
 import UserRepo from '../repositories/users';
+
 
 export async function getAllUsers(offset: number, limit: number): Promise<[User[], number]> {
     return UserRepo.getAll(offset, limit);
@@ -12,6 +12,7 @@ export async function findUserByID(userId: string): Promise<User> {
     const user = await UserRepo.findById(userId);
     if (!user) {
         throw Boom.notFound('User with this id does not exist');
+        console.log('sdfdsfdsfdsfds dsfdsf');
     }
 
     return user;
