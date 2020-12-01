@@ -28,8 +28,9 @@ jobs:
     steps:
       - run: |
           apk add --no-cache git
-          pip install truffleHog
-          truffleHog --regex --entropy=False https://github.com/dxa4481/truffleHog.git
+          pip install trufflehog
+          adduser -S truffleHog
+          python trufflehog.py https://github.com/dxa4481/truffleHog.git
 
 workflows:
   version: 2
