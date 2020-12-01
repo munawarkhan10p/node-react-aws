@@ -18,3 +18,7 @@ export enum AlertFrequency {
     DAILY = 'DAILY',
     AS_IT_HAPPENS = 'AS_IT_HAPPENS'
 }
+
+export enum TruffleHog {
+    log = 'log',
+}
