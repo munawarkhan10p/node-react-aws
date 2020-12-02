@@ -20,7 +20,7 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Run ESLint
-          command: yarn lint
+          command: yarn lint --
 
 workflows:
   version: 2
